@@ -1,9 +1,10 @@
 package com.sdp;
+import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
-import java.util.List;
+import java.rmi.registry.LocateRegistry;
 
 public class Client {
     private MathServer mathServer;
@@ -11,14 +12,17 @@ public class Client {
 
     public Client() {
         try {
-            //LocateRegistry.createRegistry(4949);
-            mathServer = (MathServer) Naming.lookup("rmi://127.0.0.1/RMIServer");
+            //LocateRegistry.getRegistry(1099);
+            mathServer = (MathServer) Naming.lookup("rmi://server:1099/RMIServer");
         } catch (NotBoundException e) {
-            e.printStackTrace();
+            System.out.println("Não encontrou o servidor.");
+            System.exit(-1);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            System.out.println("URL mal formado.");
+            System.exit(-1);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println("Não encontrou o servidor RMI.");
+            System.exit(-1);
         }
     }
 
