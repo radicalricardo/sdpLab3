@@ -16,8 +16,7 @@ public class ClientLoader {
         Scanner scanner = null;
 
         try {
-            //filename = args[0];
-            filename= "D:\\code\\sdp\\lab3\\src\\com\\sdp\\data.csv";
+            filename= "data.csv";
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Precisa de filename path como argumento.");
             System.exit(-1);

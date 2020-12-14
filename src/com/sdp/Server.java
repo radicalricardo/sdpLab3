@@ -13,10 +13,14 @@ public class Server {
         try {
             LocateRegistry.createRegistry(1099); //dá connection refused se for outro port qualquer não mudem
             Naming.rebind("RMIServer", new MathServerClass());
-            System.out.println(InetAddress.getLocalHost().getHostName());
             // rmi://127.0.0.1/MathServer1
-        } catch (RemoteException | UnknownHostException | MalformedURLException e) {
-            e.printStackTrace();
+        } catch (RemoteException e) {
+            System.out.println("Não conseguiu ligar-se.");
+            System.exit(-1);
+        }
+        catch(MalformedURLException e){
+            System.out.println("URL mal formado.");
+            System.exit(-1);
         }
     }
 }
